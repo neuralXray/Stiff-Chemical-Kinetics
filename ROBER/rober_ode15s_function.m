@@ -1,10 +1,13 @@
-function dydt = rober_ode15s_function(t,y)
-%rober_ode15s_function  Evaluate the ROBER problem
-%
-% Authors:
-% Mario De Florio
-% Enrico Schiassi
+function dydt = rober_ode15s_function(t, y)
+%% Chemical Parameters definition
+% rate constants
+k1 = 4e-2;
+k2 = 3e7;
+k3 = 1e4;
 
-dydt = [-0.04*y(1) + 10^4*y(2)*y(3); 
-         0.04*y(1) - 10^4*y(2)*y(3) - (3*10^7)*y(2)^2 ; 
-        (3*10^7)*y(2)^2 ];
+dydt = [- k1*y(1) + k3*y(2)*y(3);
+        k1*y(1) - k2*y(2)^2 - k3*y(2)*y(3);
+        k2*y(2)^2];
+
+end
+
